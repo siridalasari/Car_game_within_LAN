@@ -41,12 +41,27 @@ const startGame = async (highway, materials) => {
   placeCar(highway, x_pos, y_pos, PLAYER_CAR);
   display(highway);
   materials.getDividers();
-  await Deno.writeTextFile("./data/position.txt", "5");
+
   setInterval(async () => {
-    const y_pos = await Deno.readTextFile("./data/position.txt");
+    const response = await fetch("http://localhost:8000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "operation": "carPosition",
+        "from game": true,
+      }),
+    });
+
+    const { x, y } = await response.json();
+    console.log(
+      { x, y },
+    );
+    //const y_pos = await Deno.readTextFile("./data/position.txt");
     console.log({ y_pos });
     console.clear();
-    moveCar(highway, materials, x_pos, y_pos, PLAYER_CAR);
+    moveCar(highway, materials, x, y, PLAYER_CAR);
     display(highway);
   }, 100);
 };
@@ -55,3 +70,13 @@ export const mmm = (details, materials) => {
   const highway = constructHighway(details, materials);
   startGame(highway, materials);
 };
+
+// const response = await fetch('http://localhost:8000/', {
+//   method: 'POST',
+//   headers: {
+//   "Content-Type": "application/json",
+// },
+// body:JSON.stringify({
+//   operation:'carPosition'
+// })
+// })
