@@ -57,7 +57,7 @@ describe("Highway Materials", () => {
   const materials = highwayMaterials(hightwayDetails);
 
   it("Get cway segmenats", () => {
-    assertEquals(materials.getSegements(), [
+    assertEquals(materials.getSegments(), [
       [CEMENT_BLOCK, CEMENT_BLOCK, CEMENT_BLOCK],
       [CEMENT_BLOCK, CEMENT_BLOCK, CEMENT_BLOCK],
       [CEMENT_BLOCK, CEMENT_BLOCK, CEMENT_BLOCK],

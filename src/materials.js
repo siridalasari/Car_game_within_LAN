@@ -14,12 +14,11 @@ export const highwayMaterials = (highway_details) => {
   return ({
     "getDividers": () => {
       const divColor = details.currDivColor();
-      console.log({ divColor }, { color: DIVIDERS[divColor] });
       const divider = DIVIDERS[divColor];
       const dividers = Array.from({ length: dividersCount }, () => divider);
       return dividers;
     },
-    "getSegements": () => {
+    "getSegments": () => {
       const cway_segment = Array.from(
         { length: details.cwayWidth() },
         () => CEMENT_BLOCK,

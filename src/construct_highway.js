@@ -1,9 +1,3 @@
-import { BLACK_DIV, CEMENT_BLOCK, YELLOW_DIV } from "./materials.js";
-
-const DIVIDERS = [BLACK_DIV, YELLOW_DIV];
-
-const chooseDivider = (dividerNo) => DIVIDERS[dividerNo];
-
 export const constructSlab = (cways_segments, dividers) => {
   const slab = [];
   const materials = [cways_segments, dividers];
@@ -18,11 +12,13 @@ export const constructSlab = (cways_segments, dividers) => {
 };
 
 //carriageway
-export const constructHighway = (highway_materials) => {
-  const slabsCount = cway_height;
+export const constructHighway = (details, materials) => {
+  const slabsCount = details.cwayHeight();
   const highway = [];
 
   for (let count = 0; count < slabsCount; count++) {
+    const cways_segments = materials.getSegments();
+    const dividers = materials.getDividers();
     const slab = constructSlab(cways_segments, dividers);
     highway.push(slab);
   }
