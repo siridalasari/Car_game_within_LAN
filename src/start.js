@@ -32,7 +32,7 @@ const moveCar = (highway, materials, x_pos, y_pos, car) => {
   placeCar(highway, x_pos, y_pos, car);
 };
 
-const startGame = async (highway, materials) => {
+const startGame = (highway, materials) => {
   console.clear();
   const x_pos = highway.length - 1;
   const HIGH_WAY_Y_POSITIONS = [0, 1, 2, 4, 5, 6, 7, 9, 10];
@@ -43,7 +43,7 @@ const startGame = async (highway, materials) => {
   materials.getDividers();
 
   setInterval(async () => {
-    const response = await fetch("http://localhost:8000/", {
+    const response = await fetch("http://10.167.86.205:8000/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
